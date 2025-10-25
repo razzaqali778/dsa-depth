@@ -1,22 +1,19 @@
-def LeafList(root):
-    if root is None:
-        return []
-    
-    leaves = []
+from typing import List, Optional
 
-    stack = [root]
+from node import Node
 
-    while stack:
-        current = stack.pop()
 
-        if current.left is None and current.right is None:
-            leaves.append(current.val)
-        
-
-        if current.right if not None:
-            stack.append(current.right)
-
-        if current.left is not None:
-            stack.append(current.left)
-
+def leaf_list(root: Optional[Node]) -> List[int]:
+    leaves: List[int] = []
+    collect(root, leaves)
     return leaves
+
+
+def collect(node: Optional[Node], leaves: List[int]) -> None:
+    if node is None:
+        return
+    if node.left is None and node.right is None:
+        leaves.append(node.val)
+        return
+    collect(node.left, leaves)
+    collect(node.right, leaves)

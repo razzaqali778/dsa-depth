@@ -1,0 +1,2 @@
+using System.Collections.Generic;
+namespace RecursionSolutions;  public static class SumOfLengths {     public static int Solve(IReadOnlyList<string> words)     {         return Accumulate(words, 0);     }      private static int Accumulate(IReadOnlyList<string> words, int index)     {         if (index >= words.Count)         {             return 0;         }          return words[index].Length + Accumulate(words, index + 1);     } }
